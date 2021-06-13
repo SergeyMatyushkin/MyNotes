@@ -21,12 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mynotes.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity implements NoteListFragment.Contract, EditNoteFragment.Contract{
+public class MainActivity extends AppCompatActivity implements NoteListFragment.Contract, EditNoteFragment.Contract {
     // to do
 
     private static final String NOTES_LIST_FRAGMENT_TAG = "NOTES_LIST_FRAGMENT_TAG";
     private boolean isTwoPaneMode = false;
-//
+    //
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements NoteListFragment.
     }
 
 
-
     private void showNoteList() {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -85,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NoteListFragment.
                 .commit();
 
     }
+
     private void showEditNote() {
 
         showEditNote(null);

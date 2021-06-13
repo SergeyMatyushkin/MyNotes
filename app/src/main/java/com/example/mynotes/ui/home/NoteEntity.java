@@ -26,10 +26,12 @@ public class NoteEntity implements Serializable {
     }
 
     public static String generateNewId() {
+
         return UUID.randomUUID().toString();
     }
 
     public static long getCurrentDate() {
+
         return Calendar.getInstance().getTimeInMillis();
     }
 }
