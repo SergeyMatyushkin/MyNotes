@@ -1,6 +1,7 @@
 package com.example.mynotes;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
@@ -10,16 +11,20 @@ import com.example.mynotes.ui.home.NoteListFragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mynotes.databinding.ActivityMainBinding;
+
+import org.jetbrains.annotations.NotNull;
 
 public class MainActivity extends AppCompatActivity implements NoteListFragment.Contract, EditNoteFragment.Contract {
     // to do
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NoteListFragment.
     //
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,15 @@ public class MainActivity extends AppCompatActivity implements NoteListFragment.
         setContentView(R.layout.content_main);
         isTwoPaneMode = findViewById(R.id.optional_fragment_container) != null;
         showNoteList();
+//
+
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_content_main);
+        assert navHostFragment != null;
+        NavController navCo = navHostFragment.getNavController();
+        NavigationUI.setupActionBarWithNavController(this, navCo, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navCo);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -124,5 +139,6 @@ public class MainActivity extends AppCompatActivity implements NoteListFragment.
         noteListFragment.addNote(note);
     }
 
-
+// new
+   
 }
